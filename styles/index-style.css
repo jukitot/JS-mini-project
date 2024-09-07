@@ -1,0 +1,38 @@
+/*body {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    text-align: center;
+    background-color: rgb(98, 151, 246);
+    position: fixed;
+    z-index: 1;
+    box-shadow: 0 0 10px 0 black;
+    top: 0;
+}
+
+main {
+
+    margin-top: 120px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.cardBlock {
+    width: 45%;
+}
+
+.cardBlockBody {
+    background-color: rgba(98, 151, 246, 0.46);
+}

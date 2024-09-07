@@ -1,0 +1,64 @@
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    text-align: center;
+    background-color: rgb(98, 151, 246);
+    position: fixed;
+    z-index: 1;
+    box-shadow: 0 0 10px 0 black;
+    top: 0;
+    gap: 20%;
+}
+
+#back {
+    width: 10%;
+}
+
+main {
+
+    margin-top: 120px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    width: 90%;
+}
+
+.cardBlock {
+
+    width: 45%;
+}
+
+.cardBlockBody {
+
+    background-color: rgba(98, 151, 246, 0.46);
+
+}
+.postsDiv{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.postBlock {
+    background-color: rgba(142, 178, 246, 0.33);
+    border: 15px;
+    padding: 15px;
+    height: 350px;
+    width: 18vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
