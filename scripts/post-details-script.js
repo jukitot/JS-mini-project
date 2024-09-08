@@ -1,32 +1,25 @@
 let url = new URL(window.location.href)
-let id =  parseInt(url.searchParams.get('postId'))
+let id = parseInt(url.searchParams.get('postId'))
 let userId = parseInt(url.searchParams.get('userId'))
-console.log(id);
-console.log(userId);
-
-
-console.log(url);
 
 function createElement(tag) {
     return document.createElement(tag)
 }
 
 let mainPageButton = document.getElementById('mainPage');
-
 mainPageButton.onclick = function () {
     location.href = 'index.html'
 }
-
 
 let backButton = document.getElementById('back');
 backButton.onclick = function () {
     location.href = 'user-details.html?userId=' + userId
 }
+
 fetch('https://jsonplaceholder.typicode.com/posts/' + id)
     .then(value => value.json())
     .then(post => {
-        console.log(post);
-        let{userId, id, title, body} = post
+        let {userId, id, title, body} = post
 
         let main = document.getElementsByTagName('main')[0]
 
@@ -52,49 +45,38 @@ fetch('https://jsonplaceholder.typicode.com/posts/' + id)
         buttonComments.classList.add('btn', 'btn-info')
         buttonComments.innerText = 'Comments of this post'
 
+        fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments')
+            .then(value => value.json())
+            .then(comments => {
+                let commentsBlock = createElement('div')
 
+                commentsBlock.classList.add('commentsBlock', 'mb-5')
+                for (const comment of comments) {
+                    let commentBlock = createElement('div')
+                    commentBlock.classList.add('commentBlock')
+                    let {id, email, name, body} = comment
 
-        buttonComments.addEventListener('click',function(){
-            this.disabled = true;
-            fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments' )
-                .then(value => value.json())
-                .then(comments => {
-                    console.log(comments);
-                    let commentsBlock = createElement('div')
+                    let commentId = createElement('h3');
+                    commentId.innerText = 'Comment ID: ' + id;
 
-                    commentsBlock.classList.add('commentsBlock', 'mb-5')
-                    for (const comment of comments) {
-                        let commentBlock = createElement('div')
-                        commentBlock.classList.add('commentBlock')
-                        let {id, email, name, body} = comment
+                    let emailComment = createElement('p');
+                    emailComment.innerText = email;
 
-                        let commentId = createElement('h3');
-                        commentId.innerText = 'Comment ID: ' + id;
+                    let nameComment = createElement('p');
+                    nameComment.style.fontWeight = 'bold'
+                    nameComment.innerText = name[0].toUpperCase() + name.slice(1);
 
-                        let emailComment = createElement('p');
-                        emailComment.innerText = email;
+                    let bodyComment = createElement('p');
+                    bodyComment.innerText = body[0].toUpperCase() + body.slice(1);
 
-                        let nameComment = createElement('p');
-                        nameComment.style.fontWeight = 'bold'
-                        nameComment.innerText = name[0].toUpperCase() + name.slice(1);
+                    commentBlock.append(commentId, emailComment, nameComment, bodyComment)
 
-                        let bodyComment = createElement('p');
-                        bodyComment.innerText = body[0].toUpperCase() + body.slice(1);
-
-                        commentBlock.append(commentId, emailComment, nameComment, bodyComment)
-
-                        commentsBlock.append(commentBlock)
-                    }
-
-                    main.append(commentsBlock)
-
-
-                })
-        })
-
+                    commentsBlock.append(commentBlock)
+                }
+                main.append(commentsBlock)
+            })
         cardBody.append(postId, idOfUser, titlePost, bodyPost)
         div.append(cardBody)
-        main.append(div, buttonComments)
-
+        main.append(div)
     })
 

@@ -22,7 +22,6 @@ header {
 }
 
 main {
-
     margin-top: 120px;
     width: 100%;
     display: flex;
@@ -37,15 +36,12 @@ button {
 }
 
 .cardBlock {
-
     width: 45%;
 }
 
 
 .cardBlockBody {
-
     background-color: rgba(98, 151, 246, 0.46);
-
 }
 
 .cardBlock p {
@@ -62,15 +58,12 @@ button {
 }
 
 .commentBlock {
-
-
     height: 500px;
     background-color: rgba(142, 178, 246, 0.33);
     border: 15px;
     padding: 15px;
-    width: 18vw;
+    width: 21vw;
     display: flex;
     flex-direction: column;
-
     align-items: center;
 }

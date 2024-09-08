@@ -18,6 +18,7 @@ fetch('https://jsonplaceholder.typicode.com/users/' + id)
     .then(info => {
         console.log(info);
         let main = document.getElementsByTagName('main')[0]
+
         let {id, name, username, phone, email, address, company, website} = info;
 
         let div = createElement('div')
@@ -94,26 +95,26 @@ fetch('https://jsonplaceholder.typicode.com/users/' + id)
         websiteUser.href = 'https://' + website
         websiteUser.innerText = website;
 
-
         let btnUserPosts = createElement('button')
         btnUserPosts.innerText = 'Posts of current user'
         btnUserPosts.classList.add('btn', 'btn-info', 'mb-5')
-
 
         btnUserPosts.addEventListener('click', function () {
             this.disabled = true;
             fetch('https://jsonplaceholder.typicode.com/users/' + id + '/posts')
                 .then(value => value.json())
                 .then(posts => {
-
                     let postsDiv = createElement('div')
                     postsDiv.classList.add('postsDiv', 'mb-5')
+
                     for (const post of posts) {
                         let {id, title, userId} = post
+
                         let postBlock = createElement('div')
                         postBlock.classList.add('postBlock')
 
                         let postTitle = createElement('h2')
+                        postTitle.classList.add('fs-4')
                         postTitle.innerText = title[0].toUpperCase() + title.slice(1)
 
                         let btnPostDetails = createElement('button')
@@ -124,19 +125,13 @@ fetch('https://jsonplaceholder.typicode.com/users/' + id)
                             window.location.href = `post-details.html?postId=${id}&userId=${userId}`
                         }
 
-
                         postBlock.append(postTitle, btnPostDetails)
-
 
                         postsDiv.append(postBlock)
                         main.append(postsDiv)
-
-
                     }
                 })
-
         })
-
         cardBody.append(idUser,
             nameUser,
             usernameUser,
@@ -156,7 +151,5 @@ fetch('https://jsonplaceholder.typicode.com/users/' + id)
             websiteTitle,
             websiteUser)
         div.append(cardBody)
-
         main.append(div, btnUserPosts)
-
     });
